@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>帕鲁服务器配置</title>
+    <link href="//unpkg.com/layui@2.9.6/dist/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+
+<body>
+
+<div id="serverAnimation" class="layui-input-block"></div>
+<form class="layui-form" action="1" lay-filter="server-status-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务器当前运行状态</label>
+        <div class="layui-input-block">
+            <input id="toggle" name="serverRunStatus" lay-filter="changeServerFrom" type="checkbox"
+                   lay-skin="switch" lay-text="开|关">
+        </div>
+    </div>
+</form>
+
+<script src="//unpkg.com/layui@2.9.6/dist/layui.js"></script>
+<script src="../../static/js/mian.js"></script>
+<script>
+    layui.use(['layer', 'form'], function () {
+
+        var layer = layui.layer;
+        var form = layui.form;
+        var serverRunStatus = document.getElementById("toggle");
+        var serverStatus = document.getElementById("serverAnimation");
+
+        fetch(`/pal/getServerStatus`).then(
+            res => res.text()
+        ).then(res => {
+
+            form.val('server-status-form', {
+                "serverRunStatus": ('Y' === res)
+            });
+
+            if (serverRunStatus.checked) {
+                // 开启动画
+                serverStatus.style.animationPlayState = "running";
+                serverStatus.style.backgroundColor = "#4CAF50";
+            } else {
+                // 停止动画
+                serverStatus.style.animationPlayState = "paused";
+                serverStatus.style.backgroundColor = "#AAAAAA";
+            }
+        });
+
+        form.on('switch(changeServerFrom)', function (data) {
+            if (data.elem.checked) {
+                // 开启动画
+                serverStatus.style.animationPlayState = "running";
+                serverStatus.style.backgroundColor = "#4CAF50";
+                serverStatus.style.transform = "scale(1)";
+                fetch(`/pal/startServer`)
+                layer.tips('服务器已启动', data.othis)
+            } else {
+                // 停止动画
+                serverStatus.style.animationPlayState = "paused";
+                serverStatus.style.backgroundColor = "#AAAAAA";
+                serverStatus.style.transform = "scale(1)";
+                fetch(`/pal/stopServer`)
+                layer.tips('服务器已关闭', data.othis)
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

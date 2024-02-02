@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>帕鲁服务器配置</title>
+    <link href="//unpkg.com/layui@2.9.6/dist/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+<ul class="layui-nav">
+    <li class="layui-nav-item layui-this">
+        <a href="/serverStatus" target="mainframe">服务器</a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="/serverConfig" target="mainframe">配置</a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="/serverSaved" target="mainframe">存档</a>
+    </li>
+</ul>
+<iframe class="main-frame" id="main-frame" name="mainframe" src="/serverStatus"></iframe>
+<script>
+    var iframe = document.getElementById("main-frame");
+    iframe.style.height = (window.innerHeight - 65) + 'px';
+    window.onresize = function () {
+        iframe.style.height = (window.innerHeight - 65) + 'px';
+    }
+</script>
+<script src="//unpkg.com/layui@2.9.6/dist/layui.js"></script>
+</body>
+
+</html>
