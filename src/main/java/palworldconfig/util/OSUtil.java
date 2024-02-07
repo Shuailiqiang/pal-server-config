@@ -1,4 +1,4 @@
-package com.slq.palworldconfig.util;
+package palworldconfig.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,13 +63,11 @@ public class OSUtil {
 		String[] arr = str.split("\n");
 		if (arr != null && arr.length > 0) {
 			for (String line : arr) {
-				logger.info("line===>" + line);
 				if (line != null && !"".equals(line.trim()) && line.trim().matches("\\d+")) {
 					pidList.add(line.trim());
 				}
 			}
 		}
-
 		logger.info(pidList.toString());
 		return pidList;
 	}

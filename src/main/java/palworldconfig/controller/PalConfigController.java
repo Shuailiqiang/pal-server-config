@@ -1,15 +1,15 @@
-package com.slq.palworldconfig.controller;
+package palworldconfig.controller;
 
 
-import com.slq.palworldconfig.service.IServerHandlerService;
-import com.slq.palworldconfig.util.OSUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import palworldconfig.model.PalWorldSettings;
+import palworldconfig.service.IServerHandlerService;
+import palworldconfig.util.OSUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -28,13 +28,13 @@ public class PalConfigController {
 
 	@GetMapping("/startServer")
 	public void startServer() throws Exception {
-		logger.info("startServer ===> " );
+		logger.info("startServer ===> ");
 		serverHandlerService.startServer();
 	}
 
 	@GetMapping("/stopServer")
 	public void stopServer() throws Exception {
-		logger.info("stopServer ===> " );
+		logger.info("stopServer ===> ");
 		serverHandlerService.stopServer();
 	}
 
@@ -44,14 +44,18 @@ public class PalConfigController {
 	}
 
 	@GetMapping("/getServerConfig")
-	public String getServerConfig() throws IOException {
+	public JSONObject getServerConfig() throws Exception {
 		return serverHandlerService.getServerConfig();
 	}
-
-
-	@ExceptionHandler(Exception.class)
-	public String handleException(Exception e) {
-		logger.info(e.getMessage(), e);
-		return e.getMessage();
+	@GetMapping("/getDefaultServerConfig")
+	public JSONObject getDefaultServerConfig() throws Exception {
+		return serverHandlerService.getDefaultServerConfig();
 	}
+
+	@PostMapping("/modifyServerConfig")
+	public void modifyServerConfig(@RequestBody JSONObject json) throws Exception {
+		PalWorldSettings palWorldSetting = JSONObject.toJavaObject(json, PalWorldSettings.class);
+		serverHandlerService.modifyServerConfig(palWorldSetting);
+	}
+
 }

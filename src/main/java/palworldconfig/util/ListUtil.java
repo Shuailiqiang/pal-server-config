@@ -1,4 +1,4 @@
-package com.slq.palworldconfig.util;
+package palworldconfig.util;
 
 import java.util.List;
 
