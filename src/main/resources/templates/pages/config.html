@@ -8,7 +8,7 @@
     <link href="//unpkg.com/layui@2.9.6/dist/css/layui.css" rel="stylesheet">
     <style>
         .button-div {
-            background-color: #FFFFFF;
+            background-color: #2f363c;
             position: fixed;
             bottom: 0em;
             width: 100%;
@@ -17,6 +17,7 @@
         .layui-btn {
             margin-left: 10em;
         }
+
         .layui-form-label {
             min-width: 10em;
             width: 12em;
@@ -27,486 +28,616 @@
             width: 12em;
         }
 
-        .space-div{
+        .space-div {
             width: 100%;
             height: 5em;
+            background-color: #2f363c;
         }
 
-        .layui-btn layui-btn-primary{
-            background-color: #FFFFFF;
+        body {
+            background-color: #2f363c;
+        }
+
+        .layui-btn {
+            background-color: #16baaa;
+            color: #fff;
         }
     </style>
 </head>
 
 <body>
 <br/>
-<form class="layui-form" action="">
-    <div class="layui-form-item">
-        <label class="layui-form-label">难度</label>
-        <div class="layui-input-block">
-            <select name="Difficulty" lay-verify="required">
-                <option value="None">默认</option>
-                <option value="1">简单</option>
-                <option value="2">中等</option>
-                <option value="3">困难</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">白天流逝速度</label>
-        <div class="layui-input-block">
-            <input name="DayTimeSpeedRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">夜晚流逝速度</label>
-        <div class="layui-input-block">
-            <input name="NightTimeSpeedRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">经验值倍率</label>
-        <div class="layui-input-block">
-            <input name="ExpRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">捕捉概率倍率</label>
-        <div class="layui-input-block">
-            <input name="PalCaptureRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁出现数量倍率</label>
-        <div class="layui-input-block">
-            <input name="PalSpawnNumRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁攻击伤害倍率</label>
-        <div class="layui-input-block">
-            <input name="PalDamageRateAttack" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁承受伤害倍率</label>
-        <div class="layui-input-block">
-            <input name="PalDamageRateDefense" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">玩家攻击伤害倍率</label>
-        <div class="layui-input-block">
-            <input name="PlayerDamageRateAttack" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">玩家承受伤害倍率</label>
-        <div class="layui-input-block">
-            <input name="PlayerDamageRateDefense" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">玩家饱食度降低倍率</label>
-        <div class="layui-input-block">
-            <input name="PlayerStomachDecreaceRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">玩家耐力倍率</label>
-        <div class="layui-input-block">
-            <input name="PlayerStaminaDecreaceRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">玩家生命值恢复倍率</label>
-        <div class="layui-input-block">
-            <input name="PlayerAutoHPRegeneRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">玩家睡眠时生命恢复倍率</label>
-        <div class="layui-input-block">
-            <input name="PlayerAutoHpRegeneRateInSleep" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁饱食度降低倍率</label>
-        <div class="layui-input-block">
-            <input name="PalStomachDecreaceRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁耐力降低倍率</label>
-        <div class="layui-input-block">
-            <input name="PalStaminaDecreaceRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁生命值自然恢复倍率</label>
-        <div class="layui-input-block">
-            <input name="PalAutoHPRegeneRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁睡眠时生命恢复倍率</label>
-        <div class="layui-input-block">
-            <input name="PalAutoHpRegeneRateInSleep" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">对建筑物伤害倍率</label>
-        <div class="layui-input-block">
-            <input name="BuildObjectDamageRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">建筑物劣化速度倍率</label>
-        <div class="layui-input-block">
-            <input name="BuildObjectDeteriorationDamageRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">可采集物品掉落倍率</label>
-        <div class="layui-input-block">
-            <input name="CollectionDropRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">可采集物品生命值倍率</label>
-        <div class="layui-input-block">
-            <input name="CollectionObjectHpRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">可采集物品生成速率</label>
-        <div class="layui-input-block">
-            <input name="CollectionObjectRespawnSpeedRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">敌方掉落物品率</label>
-        <div class="layui-input-block">
-            <input name="EnemyDropItemRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">死亡惩罚</label>
-        <div class="layui-input-block">
-            <select name="DeathPenalty" lay-verify="required">
-                <option value="None">不掉落</option>
-                <option value="Item">只掉物品不掉装备</option>
-                <option value="ItemAndEquipment">掉物品和装备</option>
-                <option value="All">全都掉</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">启用玩家对玩家伤害功能</label>
-        <div class="layui-input-block">
-            <input name="bEnablePlayerToPlayerDamage" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">火焰伤害</label>
-        <div class="layui-input-block">
-            <input name="bEnableFriendlyFire" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">否会发生袭击事件</label>
-        <div class="layui-input-block">
-            <input name="bEnableInvaderEnemy" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">启用瞄准辅助手柄</label>
-        <div class="layui-input-block">
-            <input name="bEnableAimAssistPad" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">准星开启</label>
-        <div class="layui-input-block">
-            <input name="bEnableAimAssistKeyboard" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">掉落物品最大数量</label>
-        <div class="layui-input-block">
-            <input name="EnemyDropItemRate" type="number" lay-affix="number" step="1" min="1000" max="5000"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">掉落物品最大数量_UNKO</label>
-        <div class="layui-input-block">
-            <input name="DropItemMaxNum_UNKO" type="number" lay-affix="number" step="1" min="50" max="500"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">大本营最大数</label>
-        <div class="layui-input-block">
-            <input name="BaseCampMaxNum" type="number" lay-affix="number" step="1" min="10" max="500"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">大本营工人最多帕鲁数</label>
-        <div class="layui-input-block">
-            <input name="BaseCampWorkerMaxNum" type="number" lay-affix="number" step="1" min="1" max="100"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">掉落物品存在最大时长</label>
-        <div class="layui-input-block">
-            <input name="DropItemAliveMaxHours" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">自动重置没有在线玩家的公会</label>
-        <div class="layui-input-block">
-            <input name="bAutoResetGuildNoOnlinePlayers" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">无在线玩家时自动重置生成时间</label>
-        <div class="layui-input-block">
-            <input name="AutoResetGuildTimeNoOnlinePlayers" type="number" lay-affix="number" step="1" min="0" max="300"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">公会玩家最大数量</label>
-        <div class="layui-input-block">
-            <input name="GuildPlayerMaxNum" type="number" lay-affix="number" step="1" min="0" max="100"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">帕鲁蛋默认孵化时间</label>
-        <div class="layui-input-block">
-            <input name="PalEggDefaultHatchingTime" type="number" lay-affix="number" step="0.1" min="0" max="100"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">工作速率</label>
-        <div class="layui-input-block">
-            <input name="WorkSpeedRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
-                   lay-precision="2" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">多人游戏</label>
-        <div class="layui-input-block">
-            <input name="bIsMultiplay" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">PvP</label>
-        <div class="layui-input-block">
-            <input name="bIsPvP" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">可拾取其他公会的死亡掉落物</label>
-        <div class="layui-input-block">
-            <input name="bCanPickupOtherGuildDeathPenaltyDrop" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">启用不登录惩罚</label>
-        <div class="layui-input-block">
-            <input name="bEnableNonLoginPenalty" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">启用快速旅行</label>
-        <div class="layui-input-block">
-            <input name="bEnableFastTravel" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">通过地图选择起始位置</label>
-        <div class="layui-input-block">
-            <input name="bIsStartLocationSelectByMap" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">注销后玩家仍然存在</label>
-        <div class="layui-input-block">
-            <input name="bExistPlayerAfterLogout" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">启用防御其他公会玩家功能</label>
-        <div class="layui-input-block">
-            <input name="bEnableDefenseOtherGuildPlayer" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">合作玩家最大人数</label>
-        <div class="layui-input-block">
-            <input name="CoopPlayerMaxNum" type="number" lay-affix="number" step="1" min="0" max="20"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务器玩家最大人数</label>
-        <div class="layui-input-block">
-            <input name="ServerPlayerMaxNum" type="number" lay-affix="number" step="1" min="0" max="100"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务器名称</label>
-        <div class="layui-input-block">
-            <input name="ServerName" type="text" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务器描述</label>
-        <div class="layui-input-block">
-            <input name="ServerDescription" type="text" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">管理员密码</label>
-        <div class="layui-input-block">
-            <input name="AdminPassword" type="password" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务器密码</label>
-        <div class="layui-input-block">
-            <input name="ServerPassword" type="password" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务器端口</label>
-        <div class="layui-input-block">
-            <input name="ServerPlayerMaxNum" type="number" lay-affix="number" step="1" min="0" max="65536"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务器ip</label>
-        <div class="layui-input-block">
-            <input name="PublicIP" type="password" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">启用 RCON</label>
-        <div class="layui-input-block">
-            <input name="RCONEnabled" type="checkbox" lay-skin="switch">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">RCON端口</label>
-        <div class="layui-input-block">
-            <input name="RCONPort" type="number" lay-affix="number" step="1" min="0" max="65536"
-                   class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">地区</label>
-        <div class="layui-input-block">
-            <input name="Region" type="text" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">使用授权</label>
-        <div class="layui-input-block">
-            <input name="bUseAuth" type="text" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">封禁用户URL</label>
-        <div class="layui-input-block">
-            <input name="BanListURL" type="text" class="layui-input">
-        </div>
-    </div>
+<form class="layui-form" lay-filter="server-config-form">
+
+    <ul class="layui-nav layui-nav-tree" style="width: 100%">
+        <li class="layui-nav-item">
+            <a href="javascript:;">服务器设置</a>
+            <dl class="layui-nav-child">
+
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务器名称</label>
+                        <div class="layui-input-block">
+                            <input name="serverName" type="text" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务器描述</label>
+                        <div class="layui-input-block">
+                            <input name="serverDescription" type="text" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">管理员密码</label>
+                        <div class="layui-input-block">
+                            <input name="adminPassword" type="password" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务器密码</label>
+                        <div class="layui-input-block">
+                            <input name="serverPassword" type="password" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务器ip</label>
+                        <div class="layui-input-block">
+                            <input name="publicIP" type="password" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务器端口</label>
+                        <div class="layui-input-block">
+                            <input name="publicPort" type="number" lay-affix="number" step="1" min="0" max="65536"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">启用快速旅行</label>
+                        <div class="layui-input-block">
+                            <input name="bEnableFastTravel" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">通过地图选择起始位置</label>
+                        <div class="layui-input-block">
+                            <input name="bIsStartLocationSelectByMap" type="checkbox" lay-skin="switch"
+                                   value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">注销后玩家仍然存在</label>
+                        <div class="layui-input-block">
+                            <input name="bExistPlayerAfterLogout" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">多人游戏</label>
+                        <div class="layui-input-block">
+                            <input name="bIsMultiplay" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">合作玩家最大人数</label>
+                        <div class="layui-input-block">
+                            <input name="coopPlayerMaxNum" type="number" lay-affix="number" step="1" min="0"
+                                   max="20" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务器玩家最大人数</label>
+                        <div class="layui-input-block">
+                            <input name="serverPlayerMaxNum" type="number" lay-affix="number" step="1" min="0"
+                                   max="100" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">启用 RCON</label>
+                        <div class="layui-input-block">
+                            <input name="rCONEnabled" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">RCON端口</label>
+                        <div class="layui-input-block">
+                            <input name="rCONPort" type="number" lay-affix="number" step="1" min="0" max="65536"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">地区</label>
+                        <div class="layui-input-block">
+                            <input name="region" type="text" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">使用授权</label>
+                        <div class="layui-input-block">
+                            <input name="bUseAuth" type="text" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">封禁用户URL</label>
+                        <div class="layui-input-block">
+                            <input name="banListURL" type="text" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;" class="title-a">玩家设置</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">经验值倍率</label>
+                        <div class="layui-input-block">
+                            <input name="expRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
+                                   lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">捕捉概率倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palCaptureRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
+                                   lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">玩家攻击伤害倍率</label>
+                        <div class="layui-input-block">
+                            <input name="playerDamageRateAttack" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">玩家承受伤害倍率</label>
+                        <div class="layui-input-block">
+                            <input name="playerDamageRateDefense" type="number" lay-affix="number" step="0.1"
+                                   min="0" max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">玩家饱食度降低倍率</label>
+                        <div class="layui-input-block">
+                            <input name="playerStomachDecreaceRate" type="number" lay-affix="number" step="0.1"
+                                   min="0" max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">玩家耐力倍率</label>
+                        <div class="layui-input-block">
+                            <input name="playerStaminaDecreaceRate" type="number" lay-affix="number" step="0.1"
+                                   min="0" max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">玩家生命值恢复倍率</label>
+                        <div class="layui-input-block">
+                            <input name="playerAutoHPRegeneRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">玩家睡眠时生命恢复倍率</label>
+                        <div class="layui-input-block">
+                            <input name="playerAutoHpRegeneRateInSleep" type="number" lay-affix="number" step="0.1"
+                                   min="0" max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">环境设置</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">白天流逝速度</label>
+                        <div class="layui-input-block">
+                            <input name="dayTimeSpeedRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">夜晚流逝速度</label>
+                        <div class="layui-input-block">
+                            <input name="nightTimeSpeedRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">对建筑物伤害倍率</label>
+                        <div class="layui-input-block">
+                            <input name="buildObjectDamageRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">建筑物劣化速度倍率</label>
+                        <div class="layui-input-block">
+                            <input name="buildObjectDeteriorationDamageRate" type="number" lay-affix="number"
+                                   step="0.1" min="0" max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">帕鲁设置</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁出现数量倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palSpawnNumRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁攻击伤害倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palDamageRateAttack" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁承受伤害倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palDamageRateDefense" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁饱食度降低倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palStomachDecreaceRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁耐力降低倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palStaminaDecreaceRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁生命值自然恢复倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palAutoHPRegeneRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁睡眠时生命恢复倍率</label>
+                        <div class="layui-input-block">
+                            <input name="palAutoHpRegeneRateInSleep" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">帕鲁蛋默认孵化时间</label>
+                        <div class="layui-input-block">
+                            <input name="palEggDefaultHatchingTime" type="number" lay-affix="number" step="0.1"
+                                   min="0" max="100" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">游戏设置</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">难度</label>
+                        <div class="layui-input-block">
+                            <select name="difficulty">
+                                <option value="None">默认</option>
+                                <option value="1">简单</option>
+                                <option value="2">中等</option>
+                                <option value="3">困难</option>
+                            </select>
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">死亡惩罚</label>
+                        <div class="layui-input-block">
+                            <select name="deathPenalty">
+                                <option value="None">不掉落</option>
+                                <option value="Item">只掉物品不掉装备</option>
+                                <option value="ItemAndEquipment">掉物品和装备</option>
+                                <option value="All">全都掉</option>
+                            </select>
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">启用玩家对玩家伤害功能</label>
+                        <div class="layui-input-block">
+                            <input name="bEnablePlayerToPlayerDamage" type="checkbox" lay-skin="switch"
+                                   value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">火焰伤害</label>
+                        <div class="layui-input-block">
+                            <input name="bEnableFriendlyFire" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">否会发生袭击事件</label>
+                        <div class="layui-input-block">
+                            <input name="bEnableInvaderEnemy" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">大本营最大数</label>
+                        <div class="layui-input-block">
+                            <input name="baseCampMaxNum" type="number" lay-affix="number" step="1" min="10"
+                                   max="500" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">大本营工人最多帕鲁数</label>
+                        <div class="layui-input-block">
+                            <input name="baseCampWorkerMaxNum" type="number" lay-affix="number" step="1" min="1"
+                                   max="100" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">自动重置没有在线玩家的公会</label>
+                        <div class="layui-input-block">
+                            <input name="bAutoResetGuildNoOnlinePlayers" type="checkbox" lay-skin="switch"
+                                   value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">无在线玩家时自动重置生成时间</label>
+                        <div class="layui-input-block">
+                            <input name="autoResetGuildTimeNoOnlinePlayers" type="number" lay-affix="number"
+                                   step="1" min="0" max="300" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公会玩家最大数量</label>
+                        <div class="layui-input-block">
+                            <input name="guildPlayerMaxNum" type="number" lay-affix="number" step="1" min="0"
+                                   max="100" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">工作速率</label>
+                        <div class="layui-input-block">
+                            <input name="workSpeedRate" type="number" lay-affix="number" step="0.1" min="0" max="5"
+                                   lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">PvP</label>
+                        <div class="layui-input-block">
+                            <input name="bIsPvP" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">可拾取其他公会的死亡掉落物</label>
+                        <div class="layui-input-block">
+                            <input name="bCanPickupOtherGuildDeathPenaltyDrop" type="checkbox" lay-skin="switch"
+                                   value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">启用不登录惩罚</label>
+                        <div class="layui-input-block">
+                            <input name="bEnableNonLoginPenalty" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">启用防御其他公会玩家功能</label>
+                        <div class="layui-input-block">
+                            <input name="bEnableDefenseOtherGuildPlayer" type="checkbox" lay-skin="switch"
+                                   value="true">
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">操作设置</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">启用瞄准辅助手柄</label>
+                        <div class="layui-input-block">
+                            <input name="bEnableAimAssistPad" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">准星开启</label>
+                        <div class="layui-input-block">
+                            <input name="bEnableAimAssistKeyboard" type="checkbox" lay-skin="switch" value="true">
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">资源设置</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">可采集物品掉落倍率</label>
+                        <div class="layui-input-block">
+                            <input name="collectionDropRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">可采集物品生命值倍率</label>
+                        <div class="layui-input-block">
+                            <input name="collectionObjectHpRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">可采集物品生成速率</label>
+                        <div class="layui-input-block">
+                            <input name="collectionObjectRespawnSpeedRate" type="number" lay-affix="number"
+                                   step="0.1" min="0" max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">敌方掉落物品率</label>
+                        <div class="layui-input-block">
+                            <input name="enemyDropItemRate" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">掉落物品最大数量</label>
+                        <div class="layui-input-block">
+                            <input name="dropItemMaxNum" type="number" lay-affix="number" step="1" min="1000"
+                                   max="5000" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">掉落物品最大数量_UNKO</label>
+                        <div class="layui-input-block">
+                            <input name="dropItemMaxNum_UNKO" type="number" lay-affix="number" step="1" min="50"
+                                   max="500" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">掉落物品存在最大时长</label>
+                        <div class="layui-input-block">
+                            <input name="dropItemAliveMaxHours" type="number" lay-affix="number" step="0.1" min="0"
+                                   max="5" lay-precision="2" class="layui-input">
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+
+    </ul>
     <div class="space-div"></div>
     <div class="button-div">
-        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <button type="reset" class="layui-btn layui-btn-primary" onclick="getDefaultServerConfig()">默认</button>
+        <button type="reset" class="layui-btn layui-btn-primary" onclick="getServerConfig()">重置</button>
+        <button class="layui-btn" lay-submit lay-filter="modify-setting">修改</button>
     </div>
 </form>
 <script src="//unpkg.com/layui@2.9.6/dist/layui.js"></script>
-<script>
-    layui.use(['layer', 'form'], function () {
-
-        var layer = layui.layer;
-        var form = layui.form;
-
-        fetch(`/pal/getServerConfig`).then(
-            res => res.text()
-        ).then(res => {
-            layui.use(['form'], function () {
-
-                var form = layui.form;
-                form.val('server-status-form', {
-                    "serverRunStatus": ('Y' === res)
-                });
-            });
-
-            if (serverRunStatus.checked) {
-                // 开启动画
-                serverStatus.style.animationPlayState = "running";
-                serverStatus.style.backgroundColor = "#4CAF50";
-            } else {
-                // 停止动画
-                serverStatus.style.animationPlayState = "paused";
-                serverStatus.style.backgroundColor = "#AAAAAA";
-            }
-        });
-
-        form.on('switch(changeServerFrom)', function (data) {
-            if (data.elem.checked) {
-                // 开启动画
-                serverStatus.style.animationPlayState = "running";
-                serverStatus.style.backgroundColor = "#4CAF50";
-                serverStatus.style.transform = "scale(1)";
-                fetch(`/pal/startServer`)
-                layer.tips('服务器已启动', data.othis)
-            } else {
-                // 停止动画
-                serverStatus.style.animationPlayState = "paused";
-                serverStatus.style.backgroundColor = "#AAAAAA";
-                serverStatus.style.transform = "scale(1)";
-                fetch(`/pal/stopServer`)
-                layer.tips('服务器已关闭', data.othis)
-            }
-        });
-    });
-</script>
+<script src="../../static/js/script.js"></script>
+<script src="../../static/js/config.js"></script>
 </body>
 
 </html>

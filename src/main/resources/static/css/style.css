@@ -5,17 +5,16 @@
     width: 100%;
 }
 .main-frame {
-    background-color: #4CAF50;
     border: 0px;
     margin: 0px;
     width: 100%;
-    scrolling: "no";
-    allowtransparency: "yes";
+    scrolling: no;
+    allowtransparency: yes;
 }
 
 #serverAnimation {
     margin-top: 3em;
-    margin-left: 5em;
+    margin-left: 8em;
     width: 10em;
     height: 10em;
     background-color: #4CAF50;
@@ -35,3 +34,4 @@
         transform: scale(1);
     }
 }
+
