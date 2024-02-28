@@ -15,9 +15,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
 @Service
@@ -61,7 +58,7 @@ public class ServerHandlerService implements IServerHandlerService {
 	}
 
 	@Override
-	public JSONObject getServerConfig() throws Exception {
+	public PalWorldSettings getServerConfig() throws Exception {
 		String serverPath = FileUtil.getInstance().getServerPath();
 		if (StringUtil.isEmpty(serverPath)) {
 			throw new Exception("未能获取服务器文件目录");
@@ -75,12 +72,11 @@ public class ServerHandlerService implements IServerHandlerService {
 
 		PalWorldSettings palWorldSettings = FileUtil.getInstance().extractKeyValuePairs(content);
 
-		JSONObject json = (JSONObject) JSONObject.toJSON(palWorldSettings);
-		return json;
+		return palWorldSettings;
 	}
 
 	@Override
-	public JSONObject getDefaultServerConfig() throws Exception {
+	public PalWorldSettings getDefaultServerConfig() throws Exception {
 		String serverPath = FileUtil.getInstance().getServerPath();
 		if (StringUtil.isEmpty(serverPath)) {
 			throw new Exception("未能获取服务器文件目录");
@@ -93,9 +89,7 @@ public class ServerHandlerService implements IServerHandlerService {
 		String content = FileUtil.getInstance().retrieveFileContent(defaultConfigFile);
 
 		PalWorldSettings palWorldSettings = FileUtil.getInstance().extractKeyValuePairs(content);
-
-		JSONObject json = (JSONObject) JSONObject.toJSON(palWorldSettings);
-		return json;
+		return palWorldSettings;
 	}
 
 	@Override

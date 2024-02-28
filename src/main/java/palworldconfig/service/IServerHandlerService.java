@@ -29,17 +29,18 @@ public interface IServerHandlerService {
 
 	/**
 	 * 获取服务器当前配置文件信息
+	 *
 	 * @return
 	 * @throws Exception
 	 */
-	JSONObject getServerConfig() throws Exception;
+	PalWorldSettings getServerConfig() throws Exception;
 
 	/**
 	 * 获取服务器默认配置文件信息
 	 * @return
 	 * @throws Exception
 	 */
-	JSONObject getDefaultServerConfig() throws Exception;
+	PalWorldSettings getDefaultServerConfig() throws Exception;
 
 	/**
 	 * 修改服务器配置文件
