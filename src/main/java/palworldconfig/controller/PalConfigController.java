@@ -45,11 +45,15 @@ public class PalConfigController {
 
 	@GetMapping("/getServerConfig")
 	public JSONObject getServerConfig() throws Exception {
-		return serverHandlerService.getServerConfig();
+		PalWorldSettings palWorldSettings = serverHandlerService.getServerConfig();
+		JSONObject json = (JSONObject) JSONObject.toJSON(palWorldSettings);
+		return json;
 	}
 	@GetMapping("/getDefaultServerConfig")
 	public JSONObject getDefaultServerConfig() throws Exception {
-		return serverHandlerService.getDefaultServerConfig();
+		PalWorldSettings palWorldSettings = serverHandlerService.getDefaultServerConfig();
+		JSONObject json = (JSONObject) JSONObject.toJSON(palWorldSettings);;
+		return json;
 	}
 
 	@PostMapping("/modifyServerConfig")

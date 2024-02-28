@@ -3,7 +3,7 @@ package palworldconfig.model;
 public class ResponseCommonVo {
 	private String code;
 	private String result;
-	private String stackTrace;
+	private String stackTrace; // 异常信息
 
 	public String getCode() {
 		return code;

@@ -20,24 +20,20 @@ public class PageController {
 
 	@GetMapping("/index")
 	public String index() {
-		System.out.println("success");
 		return "index";
 	}
 
 	@GetMapping("/serverStatus")
 	public String server() {
-		logger.info("trans to /pages/server");
 		return "pages/server";
 	}
 
 	@GetMapping("/serverConfig")
 	public String config() {
-		logger.info("trans to /pages/config");
 		return "pages/config";
 	}
 	@GetMapping("/serverSaved")
 	public String saved() {
-		logger.info("trans to /pages/saved");
 		return "pages/saved";
 	}
 
